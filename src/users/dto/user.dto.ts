@@ -9,7 +9,7 @@ import {
     Matches,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsValid } from '../decorators/check.days.decorator';
+import { IsValid } from '../decorators/check.ads.decorator';
 
 export class CreateUserDto {
     @ApiProperty()
@@ -44,10 +44,8 @@ export class CreateUserDto {
     @ApiProperty()
     @IsBoolean()
     @IsOptional()
-    status: boolean | undefined;
+    premium: boolean | undefined;
 
-    @ApiProperty()
-    avatar: string | undefined;
 
     @ApiProperty()
     @IsString()
