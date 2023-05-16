@@ -20,8 +20,19 @@ export class CreateCarDto {
 
     @ApiProperty( { required: true })
     @IsNumber()
-    @IsOptional()
+    @IsNotEmpty()
     price: number | undefined;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+        // @IsEnum(CityEnum)
+    city: string | undefined;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    seller: string | undefined;
 
 
 }

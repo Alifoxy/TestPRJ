@@ -25,7 +25,6 @@ import {
 } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { editFileName, imageFileFilter } from '../core/file-upload/file.upload';
 
 @ApiTags('Users')
 @Controller('users')
@@ -52,24 +51,11 @@ export class UsersController {
     }
 
     @Post()
-    @UseInterceptors(
-        FileInterceptor('file', {
-            storage: diskStorage({
-                destination: './public',
-                filename: editFileName,
-            }),
-            fileFilter: imageFileFilter,
-        }),
-    )
     async createUser(
         @Req() req: any,
         @Body() body: CreateUserDto,
         @Res() res: any,
-        @UploadedFile() file: Express.Multer.File,
     ) {
-        if (file) {
-            body.avatar = `public/${file.filename}`;
-        }
         return res
             .status(HttpStatus.CREATED)
             .json(await this.userService.createUser(body));
@@ -86,6 +72,7 @@ export class UsersController {
             .status(HttpStatus.OK)
             .json(await this.userService.deleteUser(userId));
     }
+
 
     @ApiParam({ name: 'userId', required: true })
     @Patch('/:userId')

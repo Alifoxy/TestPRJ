@@ -15,41 +15,35 @@ export class CreateUserDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    name: string | undefined;
+    name!: string;
 
     @ApiProperty()
     @IsString()
-    // @IsNotEmpty()
+    @IsNotEmpty()
     @IsOptional()
-    password: string | undefined;
+    password!: string;
 
     @ApiProperty({ required: false })
     @IsNumber()
     @IsOptional()
-    age: number | undefined;
+    age!: number;
 
     @ApiProperty({ required: true, example: 'user@mail.com' })
     @IsString()
     @IsEmail()
     // @Matches('')
     @IsNotEmpty()
-    email: string | undefined;
+    email!: string;
 
     @ApiProperty()
     @IsString()
     @IsOptional()
         // @IsEnum(CityEnum)
-    city: string | undefined;
+    city!: string;
 
     @ApiProperty()
     @IsBoolean()
     @IsOptional()
-    premium: boolean | undefined;
+    premium!: boolean;
 
-
-    @ApiProperty()
-    @IsString()
-    @IsOptional()
-    @IsValid()
-    dayOff: string | undefined;
 }

@@ -8,15 +8,14 @@ import { PrismaService } from '../core/orm/prisma.service';
 export class UsersService {
     constructor(private readonly prismaService: PrismaService) {}
 
-    async createUser(userData: { password: any; name: any; email: any }): Promise<> {
+    async createUser(userData: CreateUserDto ): Promise<User> {
         return this.prismaService.user.create({
             data: {
                 name: userData.name,
                 city: userData.city,
-                status: userData.status,
                 age: userData.age,
                 email: userData.email,
-                avatar: userData.avatar,
+                premium: userData.premium,
             },
         });
     }
